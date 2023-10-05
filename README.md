@@ -6,6 +6,7 @@ Steps to reproduce:
 1. create a user in that pool (i.e. with name, email, and password)
 1. open a terminal in this repo
 1. run `npm ci`
+1. replace `$AWS_REGION`, `$AWS_USER_POOL_ID`, and `$AWS_USER_POOL_WEB_CLIENT_ID` with the values for your user pool
 1. run `npm run dev`
 1. open [localhost:3000](http://localhost:3000/), you will be redirected to /signup
 1. click the `Sign In` tab (credentials exist)

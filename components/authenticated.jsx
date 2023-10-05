@@ -4,21 +4,16 @@ import { useAuthenticator } from '@aws-amplify/ui-react'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 
+import { existingUser } from './auth'
 
-const existingUser = () => { // allow differentiation between a new user and one that logged out
-  if (typeof localStorage !== 'undefined') {
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i)
-      if (key.startsWith('CognitoIdentityServiceProvider')) {
-        return true // existing user
-      }
-    }
-  }
-  return false // new user (or localStorage was cleared)
+const tap = () => {
+  const res = existingUser()
+  console.log('existing user: ', res)
+  return res
 }
 
 export const authPath = (from) => `/${
-  existingUser() ? 'signin' : 'signup'
+  tap() ? 'signin' : 'signup'
 }?from=${
   encodeURIComponent(from)
 }`
